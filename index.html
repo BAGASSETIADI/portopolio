@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio Data Analyst - Bagas Setiadi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init();
+            const input = document.getElementById("searchInput");
+            const checkboxes = document.querySelectorAll(".toolFilter");
+
+            function filterProjects() {
+                const keyword = input.value.toLowerCase();
+                const activeTools = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
+                document.querySelectorAll(".project-card").forEach(card => {
+                    const title = card.querySelector("h4").textContent.toLowerCase();
+                    const desc = card.querySelector("p").textContent.toLowerCase();
+                    const tools = Array.from(card.querySelectorAll(".text-xs span")).map(el => el.textContent.trim().toLowerCase());
+                    const matchKeyword = title.includes(keyword) || desc.includes(keyword);
+                    const matchTool = activeTools.some(tool => tools.some(t => t.includes(tool)));
+                    card.style.display = matchKeyword && matchTool ? "block" : "none";
+                });
+            }
+            input.addEventListener("input", filterProjects);
+            checkboxes.forEach(cb => cb.addEventListener("change", filterProjects));
+        });
+    </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white font-sans overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <div class="absolute top-0 left-0 w-full h-[600px] -z-10 bg-gradient-to-br from-blue-200 via-white to-transparent dark:from-blue-900 dark:via-gray-900 dark:to-transparent transform rotate-2 scale-110 blur-2xl opacity-40"></div>
+    <section class="text-center py-20">
+        <h1 class="text-4xl font-bold mb-4">Halo, saya <span class="text-blue-600 dark:text-blue-400">Bagas Setiadi</span></h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Junior Data Analyst | Insightful & Impact-driven</p>
+        <a href="#projects" class="mt-6 inline-block bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">Lihat Portofolio</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="max-w-3xl mx-auto px-4 py-12" id="about">
+        <h2 class="text-2xl font-semibold mb-4">Tentang Saya</h2>
+        <p class="text-gray-700 dark:text-gray-300">Saya adalah seorang data analyst yang berfokus pada pembuatan insight strategis dari data. Memiliki pengalaman dalam scraping, analisis penjualan, segmentasi pelanggan, dan visualisasi dashboard menggunakan tools seperti Python, SQL, Excel, Tableau,
+            Power BI, Looker, dan BigQuery.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="bg-white dark:bg-gray-800 py-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Tools & Skills</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <img src="assets/python.svg" alt="Python" class="w-10 h-10">
+                <img src="assets/sql.svg" alt="SQL" class="w-10 h-10">
+                <img src="assets/excel.svg" alt="Excel" class="w-10 h-10">
+                <img src="assets/tableau.svg" alt="Tableau" class="w-10 h-10">
+                <img src="assets/powerbi.svg" alt="Power BI" class="w-10 h-10">
+                <img src="assets/looker.svg" alt="Looker" class="w-10 h-10">
+                <img src="assets/bigquery.svg" alt="BigQuery" class="w-10 h-10">
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Section -->
+    <section id="projects" class="container mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-6 text-center">Portofolio Proyek</h2>
+        <div class="mb-6 text-center">
+            <input id="searchInput" type="text" placeholder="Cari proyek..." class="px-4 py-2 rounded border w-full max-w-md mx-auto dark:bg-gray-700 dark:border-gray-600 dark:text-white mb-4" />
+            <div id="filterTools" class="flex flex-wrap justify-center gap-2 text-sm">
+                <label><input type="checkbox" class="toolFilter" value="python" checked> Python</label>
+                <label><input type="checkbox" class="toolFilter" value="sql" checked> SQL</label>
+                <label><input type="checkbox" class="toolFilter" value="excel" checked> Excel</label>
+                <label><input type="checkbox" class="toolFilter" value="tableau" checked> Tableau</label>
+                <label><input type="checkbox" class="toolFilter" value="powerbi" checked> Power BI</label>
+                <label><input type="checkbox" class="toolFilter" value="looker" checked> Looker</label>
+                <label><input type="checkbox" class="toolFilter" value="bigquery" checked> BigQuery</label>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Proyek 1 -->
+            <div class="project-card " data-aos="fade-up" bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Sentiment+Analysis " alt="Sentiment Analysis " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">Hotel Review Sentiment Analysis</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Klasifikasi sentimen review hotel menggunakan model Roberta pretrained dari Huggingface.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/python.svg " class="w-4 h-4 " alt="Python Icon "> Python
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+
+      <!-- Proyek 2 -->
+      <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Sales+Analysis " alt="Sales Analysis " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">SuryaMart Sales Analysis</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Analisis penjualan fiktif SuryaMart menggunakan Excel pivot & chart untuk menemukan insight performa kategori produk.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/excel.svg " class="w-4 h-4 " alt="Excel Icon "> Excel
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+
+      <!-- Proyek 3 -->
+      <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Customer+Behavior " alt="Customer Behavior " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">E-Commerce Customer Behavior</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Eksplorasi pola pelanggan dan pembelian dari database e-commerce menggunakan SQL di BigQuery.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/sql.svg " class="w-4 h-4 " alt="SQL Icon "> SQL
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+
+      <!-- Proyek 4 -->
+      <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Sales+Dashboard " alt="Sales Dashboard " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">Sales Dashboard</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Visualisasi interaktif penjualan bulanan berdasarkan produk dan wilayah.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/excel.svg " class="w-4 h-4 " alt="Excel Icon "> Excel
+          </span>
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/tableau.svg " class="w-4 h-4 " alt="Tableau Icon "> Tableau
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+
+      <!-- Proyek 5 -->
+      <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Customer+Segmentation " alt="Customer Segmentation " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">Customer Segmentation</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Pengelompokan pelanggan menggunakan algoritma K-Means berdasarkan perilaku belanja.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/python.svg " class="w-4 h-4 " alt="Python Icon "> Python
+          </span>
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/excel.svg " class="w-4 h-4 " alt="Excel Icon "> Excel
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+
+      <!-- Proyek 6 -->
+      <div class="project-card bg-white dark:bg-gray-700 rounded-lg shadow-md p-4 hover:shadow-xl transition transform hover:-translate-y-1 ">
+        <img src="https://via.placeholder.com/400x200?text=Data+Pipeline " alt="BigQuery Looker " class="rounded mb-3 " />
+        <h4 class="text-xl font-semibold mb-2 ">Data Pipeline BigQuery & Looker Studio</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 ">Membangun pipeline analitik dari BigQuery ke Looker dan Power BI untuk monitoring performa e-commerce secara real-time.</p>
+        <div class="flex gap-2 text-xs mb-3 ">
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/bigquery.svg " class="w-4 h-4 " alt="BigQuery Icon "> BigQuery
+          </span>
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/looker.svg " class="w-4 h-4 " alt="Looker Icon "> Looker
+          </span>
+          <span class="flex items-center gap-1 bg-gray-200 text-gray-700 px-2 py-1 rounded ">
+            <img src="assets/powerbi.svg " class="w-4 h-4 " alt="Power BI Icon "> Power BI
+          </span>
+        </div>
+        <div class="flex gap-2 ">
+          <a href="# " class="border border-gray-400 px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 ">📝 Lihat Deskripsi</a>
+          <a href="# " target="_blank " class="bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 ">🔗 Lihat Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact " class="bg-gray-50 dark:bg-gray-800 py-12 px-4 ">
+    <div class="max-w-2xl mx-auto text-center ">
+      <h2 class="text-2xl font-semibold mb-4 ">Hubungi Saya</h2>
+      <p class="mb-4 text-gray-600 dark:text-gray-300 ">Tertarik bekerja sama atau ingin berdiskusi lebih lanjut? Jangan ragu untuk menghubungi saya.</p>
+      <div class="flex flex-col gap-3 items-center ">
+        <a href="mailto:bagas.setiadi@email.com " class="text-blue-600 hover:underline ">📧 bagas.setiadi@email.com</a>
+        <a href="https://www.linkedin.com/in/bagas-setiadi-403468197/ " target="_blank " class="text-blue-600 hover:underline ">🔗 LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-900 text-center py-6 border-t border-gray-300 dark:border-gray-700 ">
+    <p class="text-sm text-gray-500 dark:text-gray-400 ">&copy; 2025 Bagas Setiadi. All rights reserved.</p>
+  </footer>
+
+<!-- Tombol Back to Top -->
+<button id="backToTop " class="fixed bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 hidden ">⬆️</button>
+<script>
+  const backToTopBtn = document.getElementById("backToTop ");
+  window.addEventListener("scroll ", () => {
+    backToTopBtn.style.display = window.scrollY > 300 ? "block " : "none ";
+  });
+  backToTopBtn.addEventListener("click ", () => {
+    window.scrollTo({ top: 0, behavior: "smooth " });
+  });
+</script>
+</body>
+</html>
